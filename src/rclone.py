@@ -51,11 +51,22 @@ class RClone:
         self.add_command(self.dst)
         return self
 
-    def run(self, wait=True):
+    def run(self, wait=True, timeout=None):
         self.process = subprocess.Popen(self.cmd.split(), stdout=subprocess.PIPE, universal_newlines=True)
         if wait:
-            self.process.wait()
+            try:
+                self.process.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                print("Process timed out")
+                self.terminate()
+
         return self.process
+
+    def terminate(self):
+        self.process.terminate()
+
+    def _kill(self):
+        self.process.kill()
 
     def __str__(self):
         return self.cmd
