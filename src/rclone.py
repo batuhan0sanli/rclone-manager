@@ -8,17 +8,50 @@ class RClone:
         self.log_file = log_file
         self.log_level = log_level
         self.dry_run = dry_run
-        self.cmd = None
+        self.cmd = "rclone"
+
+    def add_command(self, command: str):
+        self.cmd = " ".join([self.cmd, command])
+        return self
+
+    def add_option(self, option, value):
+        self.cmd = " ".join([self.cmd, option, value])
+        return self
 
     def sync(self):
-        # todo: add copy, move, sync, etc. options
-        base_cmd = "rclone move"
-        use_json_log = "--use-json-log"
-        log_level = "--log-level " + self.log_level
-        log_file = "--log-file " + self.log_file
-        dry_run = "--dry-run" if self.dry_run else ""
-        self.cmd = " ".join([base_cmd, use_json_log, log_level, log_file, dry_run, self.src, self.dst])
+        self.add_command("sync")
+        self._add_default_commands()
+        self._add_src_dst()
         self._run_cmd()
+        return self
+
+    def move(self):
+        self.add_command("move")
+        self._add_default_commands()
+        self._add_src_dst()
+        self._run_cmd()
+        return self
+
+    def copy(self):
+        self.add_command("copy")
+        self._add_default_commands()
+        self._add_src_dst()
+        self._run_cmd()
+        return self
+
+    def _add_default_commands(self):
+        # self.add_command("move")
+        self.add_command("--use-json-log")
+        self.add_option("--log-level", self.log_level)
+        self.add_option("--log-file", self.log_file)
+        if self.dry_run:
+            self.add_command("--dry-run")
+        return self
+
+    def _add_src_dst(self):
+        self.add_command(self.src)
+        self.add_command(self.dst)
+        return self
 
     def _run_cmd(self):
         process = subprocess.Popen(self.cmd.split(), stdout=subprocess.PIPE, universal_newlines=True)
@@ -26,3 +59,6 @@ class RClone:
         return_code = process.wait()
         if return_code:
             raise subprocess.CalledProcessError
+
+    def __str__(self):
+        return self.cmd
