@@ -1,4 +1,3 @@
-import subprocess
 from src.rclone import RClone
 
 src = './test_folder'
