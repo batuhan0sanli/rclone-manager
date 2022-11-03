@@ -11,6 +11,10 @@ class RClone:
         self.process = None
         self.cmd = "rclone"
 
+    @property
+    def is_running(self):
+        return self.process.poll() is None if self.process else False
+
     def add_command(self, command: str):
         self.cmd = " ".join([self.cmd, command])
         return self
@@ -57,7 +61,6 @@ class RClone:
             try:
                 self.process.wait(timeout=timeout)
             except subprocess.TimeoutExpired:
-                print("Process timed out")
                 self.terminate()
 
         return self.process
