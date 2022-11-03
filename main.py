@@ -4,5 +4,4 @@ from src.rclone import RClone
 src = './test_folder'
 dst = 'gphotos_test:album/rclone-test-folder'
 
-sync = RClone(src, dst).sync()
-print(sync)
+rclone = RClone(src, dst, dry_run=True).move()

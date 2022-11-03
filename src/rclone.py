@@ -2,7 +2,7 @@ import subprocess
 
 
 class RClone:
-    def __init__(self, src, dst, log_file='./log.json', log_level='INFO', dry_run=True):
+    def __init__(self, src, dst, log_file='./log.json', log_level='INFO', dry_run=False):
         self.src = src
         self.dst = dst
         self.log_file = log_file
