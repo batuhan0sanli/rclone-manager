@@ -2,14 +2,18 @@ import subprocess
 
 
 class RClone:
-    def __init__(self, src, dst, log_file='./log.json', log_level='INFO', dry_run=False):
+    def __init__(self, src, dst, *args, **kwargs):
         self.src = src
         self.dst = dst
-        self.log_file = log_file
-        self.log_level = log_level
-        self.dry_run = dry_run
+        self.name = kwargs.pop('name', id(self))
+
+        self._flags = args
+        self._options = kwargs
+
         self.process = None
-        self.cmd = "rclone"
+        self._method = None
+
+        self.method = kwargs.pop('method', None)
 
     @property
     def is_running(self):
@@ -19,44 +23,44 @@ class RClone:
     def is_started(self):
         return self.process is not None
 
-    def add_command(self, command: str):
-        self.cmd = " ".join([self.cmd, command])
-        return self
+    @property
+    def cmd(self):
+        if not self._method:
+            raise ValueError("No method has been set")
+        return " ".join(["rclone", self.method, self.src, self.dst, self.flags, self.options])
 
-    def add_option(self, option, value):
-        self.cmd = " ".join([self.cmd, option, value])
-        return self
+    @property
+    def method(self):
+        return self._method
+
+    @method.setter
+    def method(self, value: str):
+        if value not in {None, "sync", "move", "copy"}:
+            # todo: add all methods from rclone, and move this to a constant
+            raise ValueError("Method must be one of: sync, move, copy")
+        self._method = value
+
+    @property
+    def flags(self):
+        return " ".join(f"--{flag}" for flag in self._flags)
+
+    @property
+    def options(self):
+        return " ".join(f"--{option} {value}" for option, value in self._options.items())
 
     def sync(self):
-        self.add_command("sync")
-        self._add_default_commands()
-        self._add_src_dst()
+        self.method = "sync"
+        self.run()
         return self
 
     def move(self):
-        self.add_command("move")
-        self._add_default_commands()
-        self._add_src_dst()
+        self.method = "move"
+        self.run()
         return self
 
     def copy(self):
-        self.add_command("copy")
-        self._add_default_commands()
-        self._add_src_dst()
-        return self
-
-    def _add_default_commands(self):
-        # self.add_command("move")
-        self.add_command("--use-json-log")
-        self.add_option("--log-level", self.log_level)
-        self.add_option("--log-file", self.log_file)
-        if self.dry_run:
-            self.add_command("--dry-run")
-        return self
-
-    def _add_src_dst(self):
-        self.add_command(self.src)
-        self.add_command(self.dst)
+        self.method = "copy"
+        self.run()
         return self
 
     def run(self, wait=True, timeout=None):
