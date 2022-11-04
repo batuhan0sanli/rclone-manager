@@ -15,6 +15,10 @@ class RClone:
     def is_running(self):
         return self.process.poll() is None if self.process else False
 
+    @property
+    def is_started(self):
+        return self.process is not None
+
     def add_command(self, command: str):
         self.cmd = " ".join([self.cmd, command])
         return self
