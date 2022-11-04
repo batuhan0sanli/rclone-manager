@@ -13,4 +13,4 @@ flags = {
     'syslog',        # Use Syslog for logging
 }
 
-rclone = RClone(src, dst, *flags, **config).move()
+RClone(src, dst, *flags, **config).move().run()

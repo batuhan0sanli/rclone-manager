@@ -17,7 +17,7 @@ from rclone_manager import RClone
 src = './test_folder'
 dst = 'gdrive:rclone-test-folder'
 
-RClone(src, dst).move()
+RClone(src, dst).move().run()
 
 print('Done')
 
@@ -31,7 +31,8 @@ from rclone_manager.rclone import RClone
 src = './test_folder'
 dst = 'gdrive:rclone-test-folder'
 
-rclone = RClone(src, dst).copy(wait=False)
+rclone = RClone(src, dst).copy()
+rclone.run(wait=False)
 
 # Do something else
 
