@@ -5,11 +5,15 @@ from os import path
 # The directory containing this file
 PATH = path.abspath(path.dirname(__file__))
 
+# Get the long description from the README file
+with open(path.join(PATH, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 setup(
     name='rclone-manager',
-    version='0.0.1',
+    version='0.0.2',
     description='Define multiple tasks using rclone',
-    long_description='Define multiple tasks using rclone',
+    long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/batuhan0sanli/rclone-manager',
     author='batuhan0sanli',
