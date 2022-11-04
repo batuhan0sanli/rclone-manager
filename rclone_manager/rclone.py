@@ -48,19 +48,22 @@ class RClone:
     def options(self):
         return " ".join(f"--{option} {value}" for option, value in self._options.items())
 
-    def sync(self, *args, **kwargs):
+    def sync(self, run=True, *args, **kwargs):
         self.method = "sync"
-        self.run(*args, **kwargs)
+        if run:
+            self.run(*args, **kwargs)
         return self
 
-    def move(self, *args, **kwargs):
+    def move(self, run=True, *args, **kwargs):
         self.method = "move"
-        self.run(*args, **kwargs)
+        if run:
+            self.run(*args, **kwargs)
         return self
 
-    def copy(self, *args, **kwargs):
+    def copy(self, run=True, *args, **kwargs):
         self.method = "copy"
-        self.run(*args, **kwargs)
+        if run:
+            self.run(*args, **kwargs)
         return self
 
     def run(self, wait=True, timeout=None):
