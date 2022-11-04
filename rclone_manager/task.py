@@ -2,15 +2,18 @@ from rclone_manager.rclone import RClone
 
 
 class RCloneTask:
-    def __init__(self, job: RClone, name=None, is_enabled=True):
+    def __init__(self, job: RClone, name=None, is_enabled=True, callback: callable = None):
         self.job = job
         self.name = name or job.name
         self.is_enabled = is_enabled
+        self.callback = callback
 
     def run(self, *args, **kwargs):
         if not self.is_enabled:
             return
         job = self.job.run(*args, **kwargs)
+        if self.callback:
+            self.callback(self)
         return job
 
     def __repr__(self):
