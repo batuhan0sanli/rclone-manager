@@ -1,4 +1,4 @@
-# Multi Clone
+# RClone Manager
 
 Define multiple tasks using rclone to sync files from one cloud storage to another.
 
@@ -12,12 +12,12 @@ Define multiple tasks using rclone to sync files from one cloud storage to anoth
 ### Move files from Local to Google Drive
 
 ```python
-from src.rclone import RClone
+from rclone_manager import RClone
 
 src = './test_folder'
 dst = 'gdrive:rclone-test-folder'
 
-RClone(src, dst).move().run()
+RClone(src, dst).move()
 
 print('Done')
 
@@ -26,12 +26,12 @@ print('Done')
 ### Copy files but terminate whenever you want
 
 ```python
-from src.rclone import RClone
+from rclone_manager.rclone import RClone
 
 src = './test_folder'
 dst = 'gdrive:rclone-test-folder'
 
-rclone = RClone(src, dst).copy().run(wait=False)
+rclone = RClone(src, dst).copy(wait=False)
 
 # Do something else
 
