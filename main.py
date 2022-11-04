@@ -1,4 +1,4 @@
-from src.rclone import RClone
+from rclone_manager import RClone
 
 src = './test_folder'
 dst = 'gphotos_test:album/rclone-test-folder'
