@@ -76,4 +76,10 @@ class RClone:
         self.process.kill()
 
     def __str__(self):
-        return self.cmd
+        return str(self.name)
+
+    def __repr__(self):
+        return str(self.name)
+
+    def __call__(self, *args, **kwargs):
+        return self.run()
