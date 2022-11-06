@@ -6,6 +6,19 @@ Define multiple tasks using rclone to sync files from one cloud storage to anoth
 
 - Define multiple tasks
 - Define timeouts for each task
+- Callbacks to run scripts after tasks complete
+- Run tasks in parallel
+- Save logs to files
+
+## Installation
+
+### Requirements
+- [RClone](https://rclone.org/downloads/)
+
+### Install from PyPI
+```bash
+pip install rclone-manager
+```
 
 ## Example Usage
 
