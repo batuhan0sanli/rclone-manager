@@ -5,7 +5,7 @@ class RClone:
     def __init__(self, src, dst, *args, **kwargs):
         self.src = src
         self.dst = dst
-        self.name = kwargs.pop('name', id(self))
+        self.name = kwargs.pop('name', str(id(self)))
 
         self._flags = args
         self._options = kwargs
