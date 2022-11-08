@@ -60,11 +60,11 @@ class RClone:
         self.method = "copy"
         return self
 
-    def run(self, wait=True, timeout=None):
+    def run(self, wait=True, wait_timeout=None):
         self.process = subprocess.Popen(self.cmd.split(), stdout=subprocess.PIPE, universal_newlines=True)
         if wait:
             try:
-                self.process.wait(timeout=timeout)
+                self.process.wait(timeout=wait_timeout)
             except subprocess.TimeoutExpired:
                 self.terminate()
 
