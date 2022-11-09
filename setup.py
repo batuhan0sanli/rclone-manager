@@ -11,7 +11,7 @@ with open(path.join(PATH, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='rclone-manager',
-    version='0.3.0',
+    version='0.3.1',
     description='Define multiple tasks using rclone',
     long_description=long_description,
     long_description_content_type='text/markdown',
