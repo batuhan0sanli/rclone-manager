@@ -2,10 +2,14 @@ import subprocess
 
 
 class RClone:
+    """
+    This class is a wrapper for the rclone command line tool.
+    """
+
     def __init__(self, src, dst, *args, **kwargs):
         self.src = src
         self.dst = dst
-        self.name = kwargs.pop('name', id(self))
+        self.name = kwargs.pop('name', str(id(self)))
 
         self._flags = args
         self._options = kwargs
@@ -60,11 +64,12 @@ class RClone:
         self.method = "copy"
         return self
 
-    def run(self, wait=True, timeout=None):
-        self.process = subprocess.Popen(self.cmd.split(), stdout=subprocess.PIPE, universal_newlines=True)
+    def run(self, wait=True, wait_timeout=None):
+        self.process = subprocess.Popen(self.cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                        universal_newlines=True)
         if wait:
             try:
-                self.process.wait(timeout=timeout)
+                self.process.wait(timeout=wait_timeout)
             except subprocess.TimeoutExpired:
                 self.terminate()
 

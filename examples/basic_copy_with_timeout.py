@@ -6,4 +6,4 @@ dst = 'gdrive:rclone_test'
 rclone = RClone(src, dst).copy()
 
 # Rclone terminate in 10 seconds
-rclone.run(timeout=10)
+rclone.run(wait_timeout=10)
