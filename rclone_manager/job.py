@@ -20,6 +20,8 @@ class Job(RClone):
         self._thread = None
         self._is_finished = False
 
+        self.__task = None
+
         self._stats = {
             "bytes": 0,
             "checks": 0,
@@ -41,6 +43,7 @@ class Job(RClone):
 
     def run(self, *args, **kwargs):
         kwargs.pop('wait', None)  # Job.run() does not support wait
+        self.__task = kwargs.pop('task', None)
         super().run(wait=False, *args, **kwargs)
         self._run_thread()
         return self
@@ -54,6 +57,8 @@ class Job(RClone):
                 stats = line_json.get('stats', {})
                 self._stats.update(stats)
         self._is_finished = True
+        if self.__task:
+            self.__task.result_handler(self)
         if self.callback:
             self.callback(self)
 
