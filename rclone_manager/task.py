@@ -1,20 +1,33 @@
-from rclone_manager.rclone import RClone
+import time
+from rclone_manager.job import Job
 
 
 class RCloneTask:
-    def __init__(self, job: RClone, name=None, is_enabled=True, callback: callable = None):
-        self.job = job
-        self.name = name or job.name
+    def __init__(self, job: Job = None, is_enabled=True, *args, **kwargs):
+        self.job = job or Job(*args, **kwargs)
         self.is_enabled = is_enabled
-        self.callback = callback
+
+        self.__start_time = None
+        self.__end_time = None
 
     def run(self, *args, **kwargs):
         if not self.is_enabled:
             return
-        job = self.job.run(*args, **kwargs)
-        if self.callback:
-            self.callback(self)
+        self.__start_time = time.time()
+        job = self.job.run(task=self, *args, **kwargs)
         return job
+
+    def result_handler(self, job: Job):
+        self.__end_time = time.time()
+        print(f"Job {job.name} finished in {self.__end_time - self.__start_time} seconds")
+
+    @property
+    def start_time(self):
+        return self.__start_time
+
+    @property
+    def end_time(self):
+        return self.__end_time
 
     def __repr__(self):
         return f"Task({self.job}, name={self.name}, is_enabled={self.is_enabled})"
