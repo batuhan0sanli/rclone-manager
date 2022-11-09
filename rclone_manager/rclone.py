@@ -2,6 +2,10 @@ import subprocess
 
 
 class RClone:
+    """
+    This class is a wrapper for the rclone command line tool.
+    """
+
     def __init__(self, src, dst, *args, **kwargs):
         self.src = src
         self.dst = dst
@@ -61,7 +65,8 @@ class RClone:
         return self
 
     def run(self, wait=True, wait_timeout=None):
-        self.process = subprocess.Popen(self.cmd.split(), stdout=subprocess.PIPE, universal_newlines=True)
+        self.process = subprocess.Popen(self.cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                        universal_newlines=True)
         if wait:
             try:
                 self.process.wait(timeout=wait_timeout)
