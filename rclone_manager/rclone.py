@@ -1,4 +1,5 @@
 import subprocess
+from rclone_manager.exceptions import RCloneValueError
 
 
 class RClone:
@@ -30,7 +31,7 @@ class RClone:
     @property
     def cmd(self):
         if not self._method:
-            raise ValueError("No method has been set")
+            raise RCloneValueError("No method has been set")
         return " ".join(["rclone", self.method, self.src, self.dst, self.flags, self.options])
 
     @property
@@ -41,7 +42,7 @@ class RClone:
     def method(self, value: str):
         if value not in {None, "sync", "move", "copy"}:
             # todo: add all methods from rclone, and move this to a constant
-            raise ValueError("Method must be one of: sync, move, copy")
+            raise RCloneValueError("Invalid method")
         self._method = value
 
     @property
