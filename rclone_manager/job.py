@@ -8,7 +8,7 @@ class Job(RClone):
     """
     This class is a subclass of the RClone class, and it is used to create a job object that can be used to run a job
     on the cluster. It has a thread that updates the job progress in real time. It also has a callback function that
-    is called when the job is finished.
+    is called when the job is finished or terminated.
     """
 
     def __init__(self, src, dst, callback: callable = None, *args, **kwargs):
@@ -69,8 +69,12 @@ class Job(RClone):
         return self._thread
 
     def terminate(self):
-        self.process.terminate()
-        self._thread.join()
+        if self.is_running:
+            print(f"Job {self.name} terminated")
+            self.process.terminate()
+            self._thread.join()
+        else:
+            print(f"Job {self.name} not running")
 
     @property
     def stats(self):
