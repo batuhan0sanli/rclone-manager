@@ -44,6 +44,7 @@ class Job(RClone):
     def run(self, *args, **kwargs):
         kwargs.pop('wait', None)  # Job.run() does not support wait
         self.__task = kwargs.pop('task', None)
+        print(f"Job {self.name} started")
         super().run(wait=False, *args, **kwargs)
         self._run_thread()
         return self
