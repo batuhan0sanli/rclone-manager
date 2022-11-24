@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2022-11-24
+
+### Added
+
+- Added Schedule Module
+- Added cron examples
+- Added some logs
+
+
+## [0.3.2] - 2022-11-11
+
+### Added
+
+- Added RClone Exceptions
+
+
 ## [0.3.1] - 2022-11-09
 
 ### Added
@@ -50,6 +66,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First release
 
+[0.4.0]: https://github.com/batuhan0sanli/rclone-manager/compare/0.3.2...0.4.0
+[0.3.2]: https://github.com/batuhan0sanli/rclone-manager/compare/0.3.1...0.3.2
 [0.3.1]: https://github.com/batuhan0sanli/rclone-manager/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/batuhan0sanli/rclone-manager/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/batuhan0sanli/rclone-manager/compare/0.1.9...0.2.0
