@@ -1,12 +1,20 @@
 import time
-from rclone_manager.job import Job
-from rclone_manager import schedule
+
+from . import job as job_module
+from . import schedule as schedule_module
 from .base import logger
+
+__all__ = ['RCloneTask']
 
 
 class RCloneTask:
-    def __init__(self, job: Job = None, schedule: 'schedule.RCloneSchedule' = None, is_enabled=True, *args, **kwargs):
-        self.job = job or Job(*args, **kwargs)
+    def __init__(self,
+                 job: job_module.RCloneJob = None,
+                 schedule: 'schedule_module.RCloneSchedule' = None,
+                 is_enabled=True,
+                 *args,
+                 **kwargs):
+        self.job = job or job_module.RCloneJob(*args, **kwargs)
         self.schedule = schedule
         self.is_enabled = is_enabled
 
@@ -23,7 +31,7 @@ class RCloneTask:
             self.job.run(task=self, *args, **kwargs)
         return self.job
 
-    def result_handler(self, job: Job):
+    def result_handler(self, job: job_module.RCloneJob):
         self.__end_time = time.time()
         logger.info(f"Job {job.name} finished in {self.__end_time - self.__start_time} seconds")
 

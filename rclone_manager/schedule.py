@@ -1,8 +1,12 @@
-from rclone_manager import task
+from datetime import datetime
+
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
-from datetime import datetime
+
+from . import task as task_module
+
+__all__ = ['RCloneSchedule']
 
 
 class RCloneSchedule:
@@ -20,9 +24,10 @@ class RCloneSchedule:
     def end_trigger(self):
         return CronTrigger.from_crontab(self.end_cron)
 
-    def schedule_start(self, task: 'task.RCloneTask', *args, **kwargs):
+    def schedule_start(self, task: 'task_module.RCloneTask', *args, **kwargs):
         start_trigger = {'trigger': self.start_trigger} if self.start_cron else {'next_run_time': datetime.now()}
-        self.scheduler.add_job(task.job.run, args=args, kwargs={'task': task, **kwargs}, **start_trigger, id=task.job.name + '_start')
+        self.scheduler.add_job(task.job.run, args=args, kwargs={'task': task, **kwargs}, **start_trigger,
+                               id=task.job.name + '_start')
 
         if self.end_cron:
             self.scheduler.add_job(task.job.terminate, trigger=self.end_trigger, id=task.job.name + '_end')
@@ -31,4 +36,3 @@ class RCloneSchedule:
 
     def __repr__(self):
         return f"Schedule({self.start_cron}, {self.end_cron})"
-

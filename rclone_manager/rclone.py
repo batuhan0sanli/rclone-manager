@@ -1,5 +1,8 @@
 import subprocess
-from rclone_manager.base import exceptions
+
+from .base import exceptions
+
+__all__ = ['RClone']
 
 
 class RClone:

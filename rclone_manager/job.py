@@ -1,8 +1,8 @@
 import json
 import threading
 
-from rclone_manager.rclone import RClone
-from rclone_manager.base import logger
+from . import rclone
+from .base import logger
 
 __all__ = ['RCloneJob']
 
