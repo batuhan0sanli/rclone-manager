@@ -1,4 +1,4 @@
-from rclone_manager import RCloneTask, Job, RCloneSchedule
+from rclone_manager import RCloneTask, RCloneJob, RCloneSchedule
 
 src = '../rclone-test'
 dst = 'gphotos_test:album/rclone_test'
@@ -8,7 +8,7 @@ end_cron = '2,4,6 * * * *'
 
 callback = lambda job: print("Job Stats: ", job.stats)
 
-job = Job(src, dst, callback=callback).copy()
+job = RCloneJob(src, dst, callback=callback).copy()
 schedule = RCloneSchedule(start_cron, end_cron)
 task = RCloneTask(job, schedule)
 task.run()
