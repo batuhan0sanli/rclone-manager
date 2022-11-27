@@ -35,7 +35,7 @@ class RClone:
     def cmd(self):
         if not self._method:
             raise exceptions.RCloneValueError("No method has been set")
-        return " ".join(["rclone", self.method, self.src, self.dst, self.flags, self.options])
+        return " ".join(filter(None, ("rclone", self.method, self.src, self.dst, self.flags, self.options)))
 
     @property
     def method(self):
