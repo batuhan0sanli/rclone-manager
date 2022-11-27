@@ -1,6 +1,7 @@
-import os
 import logging
+import os
 
+__all__ = ['logger']
 
 logger = logging.getLogger('rclone_manager')
 logger.setLevel(os.environ.get('RCLONE_MANAGER_LOG_LEVEL', 'INFO'))
@@ -19,5 +20,3 @@ ch.setFormatter(formatter)
 # add the handlers to the logger
 logger.addHandler(fh)
 logger.addHandler(ch)
-
-__all__ = ['logger']
