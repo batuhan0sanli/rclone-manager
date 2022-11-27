@@ -1,4 +1,4 @@
-from rclone_manager.exceptions._base import RCloneManagerException
+from rclone_manager.base.exceptions._base import RCloneManagerException
 
 
 class RCloneValueError(RCloneManagerException):
