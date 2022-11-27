@@ -36,16 +36,16 @@ class RCloneTask:
         return self.__end_time
 
     def __repr__(self):
-        return f"Task({self.job}, name={self.name}, is_enabled={self.is_enabled})"
+        return f"Task({self.job}, name={self.job.name}, is_enabled={self.is_enabled})"
 
     def __str__(self):
-        return str(self.name)
+        return str(self.job.name)
 
     def __eq__(self, other):
-        return self.job == other.job and self.name == other.name and self.is_enabled == other.is_enabled
+        return self.job == other.job and self.job.name == other.name and self.is_enabled == other.is_enabled
 
     def __hash__(self):
-        return hash((self.job, self.name, self.is_enabled))
+        return hash((self.job, self.job.name, self.is_enabled))
 
     def __bool__(self):
         return self.is_enabled
