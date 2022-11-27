@@ -4,8 +4,10 @@ import threading
 from rclone_manager.rclone import RClone
 from rclone_manager.base import logger
 
+__all__ = ['RCloneJob']
 
-class Job(RClone):
+
+class RCloneJob(rclone.RClone):
     """
     This class is a subclass of the RClone class, and it is used to create a job object that can be used to run a job
     on the cluster. It has a thread that updates the job progress in real time. It also has a callback function that
