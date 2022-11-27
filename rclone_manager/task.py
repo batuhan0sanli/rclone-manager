@@ -1,6 +1,7 @@
 import time
 from rclone_manager.job import Job
 from rclone_manager import schedule
+from .base import logger
 
 
 class RCloneTask:
@@ -24,7 +25,7 @@ class RCloneTask:
 
     def result_handler(self, job: Job):
         self.__end_time = time.time()
-        print(f"Job {job.name} finished in {self.__end_time - self.__start_time} seconds")
+        logger.info(f"Job {job.name} finished in {self.__end_time - self.__start_time} seconds")
 
     @property
     def start_time(self):

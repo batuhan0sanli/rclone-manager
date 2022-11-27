@@ -2,6 +2,7 @@ import json
 import threading
 
 from rclone_manager.rclone import RClone
+from rclone_manager.base import logger
 
 
 class Job(RClone):
@@ -44,7 +45,7 @@ class Job(RClone):
     def run(self, *args, **kwargs):
         kwargs.pop('wait', None)  # Job.run() does not support wait
         self.__task = kwargs.pop('task', None)
-        print(f"Job {self.name} started")
+        logger.info(f"Job {self.name} started")
         super().run(wait=False, *args, **kwargs)
         self._run_thread()
         return self
@@ -70,11 +71,11 @@ class Job(RClone):
 
     def terminate(self):
         if self.is_running:
-            print(f"Job {self.name} terminated")
+            logger.info(f"Job {self.name} terminated")
             self.process.terminate()
             self._thread.join()
         else:
-            print(f"Job {self.name} not running")
+            logger.info(f"Job {self.name} not running")
 
     @property
     def stats(self):
