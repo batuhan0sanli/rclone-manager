@@ -15,7 +15,7 @@ with open(path.join(PATH, 'requirements.txt'), encoding='utf-8') as f:
 
 setup(
     name='rclone-manager',
-    version='0.4.4',
+    version='0.5.0',
     description='Define multiple tasks using rclone',
     long_description=long_description,
     long_description_content_type='text/markdown',
