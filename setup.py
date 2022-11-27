@@ -9,6 +9,10 @@ PATH = path.abspath(path.dirname(__file__))
 with open(path.join(PATH, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
+# Read the requirements file
+with open(path.join(PATH, 'requirements.txt'), encoding='utf-8') as f:
+    requirements = f.read().splitlines()
+
 setup(
     name='rclone-manager',
     version='0.4.1',
@@ -28,5 +32,6 @@ setup(
     ],
     keywords='rclone manager sync copy move file',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    install_requires=requirements,
     python_requires='>=3.8',
 )
