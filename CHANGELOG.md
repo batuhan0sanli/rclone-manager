@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2022-11-29
+
+### Added
+
+- Add Docstrings to all functions and classes
+- Write documentation for all functions and classes and add to ReadTheDocs
+- Add environment variable to set the logging file path
+
+### Changed
+
+- Some refactoring of the code
+
 ## [0.5.0] - 2022-11-27
 
 ### Added
@@ -98,6 +110,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - First release
+
+[0.6.0]: https://github.com/batuhan0sanli/rclone-manager/compare/0.5.0...0.6.0
 
 [0.5.0]: https://github.com/batuhan0sanli/rclone-manager/compare/0.4.4...0.5.0
 
