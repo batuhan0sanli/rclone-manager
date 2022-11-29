@@ -9,10 +9,10 @@ The following table shows the different tools and their use cases:
    :widths: 70 20 20 20
    :header-rows: 1
 
-   * - Command
-     - RClone
-     - RCloneJob
-     - RCloneTask
+   * - Feature
+     - :ref:`RClone<rclone>`
+     - :ref:`RCloneJob<rclone_job>`
+     - :ref:`RCloneTask<rclone_task>`
    * - Sync/Move/Copy Usage
      - Yes
      - Yes

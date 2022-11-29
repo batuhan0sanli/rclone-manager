@@ -1,6 +1,6 @@
 RClone
 ------
-
+.. _rclone:
 .. automodule:: rclone_manager.rclone
    :members:
    :undoc-members:
@@ -8,7 +8,7 @@ RClone
 
 RCloneJob
 ---------
-
+.. _rclone_job:
 .. automodule:: rclone_manager.job
    :members:
    :undoc-members:
@@ -16,7 +16,7 @@ RCloneJob
 
 RCloneTask
 ----------
-
+.. _rclone_task:
 .. automodule:: rclone_manager.task
    :members:
    :undoc-members:
