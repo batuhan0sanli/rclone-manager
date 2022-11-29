@@ -53,3 +53,11 @@ The following table shows the different tools and their use cases:
      - No
      - No
      - Yes
+
+.. note::
+    The RCloneJob is based on the RClone class. So you can use all the methods of the RClone class in
+    the RCloneJob class.
+
+.. note::
+    The RCloneTask is wrapper class for the RCloneJob class. So you can use all the methods of the
+    RCloneJob class in the RCloneTask class.
