@@ -2,7 +2,7 @@ Usage
 =====
 
 Choosing the right tool
-------------------------------------------
+-----------------------
 The following table shows the different tools and their use cases:
 
 .. list-table:: Tool Differences
@@ -61,3 +61,26 @@ The following table shows the different tools and their use cases:
 .. note::
     The RCloneTask is wrapper class for the RCloneJob class. So you can use all the methods of the
     RCloneJob class in the RCloneTask class.
+
+.. important::
+    If you want use RClone on Python, you can use the RClone class. All the flags and options are
+    available. But you have to handle the job execution and the termination by yourself.
+
+    If you want use RClone on Python with a simple job execution, you can use the RCloneJob class.
+
+
+Quick Start
+-----------
+
+.. toctree::
+   :maxdepth: 1
+
+   usage.quickstart
+
+Advanced Usage
+--------------
+
+.. toctree::
+   :maxdepth: 1
+
+   usage.advanced_usage
