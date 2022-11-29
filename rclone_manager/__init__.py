@@ -1,4 +1,6 @@
-from rclone_manager.rclone import RClone
-from rclone_manager.task import RCloneTask
-from rclone_manager.job import RCloneJob
-from rclone_manager.schedule import RCloneSchedule
+from .rclone import RClone
+from .task import RCloneTask
+from .job import RCloneJob
+from .schedule import RCloneSchedule
+from .__version__ import __title__, __description__, __url__, __version__
+from .__version__ import __author__, __author_email__, __license__, __copyright__
