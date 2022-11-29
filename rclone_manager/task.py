@@ -8,6 +8,19 @@ __all__ = ['RCloneTask']
 
 
 class RCloneTask:
+    """
+    This is a wrapper for the RCloneJob class. It is used to schedule jobs to run at a specific time.
+
+    :param job: RCloneJob object
+    :type job: RCloneJob
+    :param schedule: RCloneSchedule object
+    :type schedule: RCloneSchedule
+    :param is_enabled: Enable or disable task
+    :type is_enabled: bool
+    :param args: Arguments to pass to RCloneJob
+    :param kwargs: Keyword arguments to pass to RCloneJob
+    """
+
     def __init__(self,
                  job: job_module.RCloneJob = None,
                  schedule: 'schedule_module.RCloneSchedule' = None,
@@ -22,6 +35,12 @@ class RCloneTask:
         self.__end_time = None
 
     def run(self, *args, **kwargs):
+        """
+        Run the task. This will run the job and schedule the job to run again at the specified time.
+
+        :param args: Arguments to pass to RCloneJob
+        :param kwargs: Keyword arguments to pass to RCloneJob
+        """
         if not self.is_enabled:
             return
         self.__start_time = time.time()
@@ -32,15 +51,33 @@ class RCloneTask:
         return self.job
 
     def result_handler(self, job: job_module.RCloneJob):
+        """
+        This is a callback function that is called when the job is finished. It will log the job stats.
+
+        :param job: RCloneJob object
+        :type job: RCloneJob
+        """
         self.__end_time = time.time()
         logger.info(f"Job {job.name} finished in {self.__end_time - self.__start_time} seconds")
 
     @property
     def start_time(self):
+        """
+        Get start time of the task.
+
+        :return: Start time
+        :rtype: datetime.datetime
+        """
         return self.__start_time
 
     @property
     def end_time(self):
+        """
+        Get end time of the task.
+
+        :return: End time
+        :rtype: datetime.datetime
+        """
         return self.__end_time
 
     def __repr__(self):

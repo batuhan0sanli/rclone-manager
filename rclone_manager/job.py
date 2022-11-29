@@ -12,6 +12,15 @@ class RCloneJob(rclone.RClone):
     This class is a subclass of the RClone class, and it is used to create a job object that can be used to run a job
     on the cluster. It has a thread that updates the job progress in real time. It also has a callback function that
     is called when the job is finished or terminated.
+
+    :param src: Source path
+    :type src: str
+    :param dst: Destination path
+    :type dst: str
+    :param callback: Callback function
+    :type callback: callable
+    :param args: Flags
+    :param kwargs: Options & Config
     """
 
     def __init__(self, src, dst, callback: callable = None, *args, **kwargs):
@@ -45,6 +54,14 @@ class RCloneJob(rclone.RClone):
         }
 
     def run(self, *args, **kwargs):
+        """
+        Run rclone command.
+
+        :param args: Flags
+        :param kwargs: Options & Config (will override the ones passed to the constructor)
+        :return: RCloneJob object
+        :rtype: RCloneJob
+        """
         kwargs.pop('wait', None)  # Job.run() does not support wait
         self.__task = kwargs.pop('task', None)
         logger.info(f"Job {self.name} started")
@@ -53,6 +70,9 @@ class RCloneJob(rclone.RClone):
         return self
 
     def _update_stats(self):
+        """
+        Update job stats in real time. This function is called by a thread.
+        """
         for line in iter(self.process.stdout.readline, ''):
             if line:
                 if not line.startswith('{'):
@@ -67,11 +87,20 @@ class RCloneJob(rclone.RClone):
             self.callback(self)
 
     def _run_thread(self):
+        """
+        Run thread that updates job stats in real time. This function is called by the run() function.
+
+        :return: thread object
+        :rtype: threading.Thread
+        """
         self._thread = threading.Thread(target=self._update_stats, name=self.name + "_thread" + '_stats')
         self._thread.start()
         return self._thread
 
     def terminate(self):
+        """
+        Terminate job.
+        """
         if self.is_running:
             logger.info(f"Job {self.name} terminated")
             self.process.terminate()
@@ -81,8 +110,20 @@ class RCloneJob(rclone.RClone):
 
     @property
     def stats(self):
+        """
+        Get job stats.
+
+        :return: Job stats
+        :rtype: dict
+        """
         return self._stats
 
     @property
     def is_finished(self):
+        """
+        Check if job is finished.
+
+        :return: True if job is finished, False otherwise
+        :rtype: bool
+        """
         return self._is_finished
