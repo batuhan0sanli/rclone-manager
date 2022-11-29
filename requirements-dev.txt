@@ -1,0 +1,7 @@
+# Install Package
+APScheduler~=3.9.1
+
+# Sphinx
+Sphinx
+sphinx_rtd_theme
+sphinx_mdinclude~=0.5.3
