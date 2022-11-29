@@ -1,4 +1,4 @@
-RClone Reference
+API Reference
 ================
 
 RClone is a command line program to sync files and directories to and from

@@ -49,7 +49,7 @@ A minimal example of how to use RClone Manager is shown below:
 
    documentation/installation
    documentation/usage
-   documentation/modules
+   documentation/reference
    documentation/examples
 
 .. toctree::
