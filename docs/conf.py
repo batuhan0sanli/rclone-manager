@@ -2,23 +2,25 @@
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
-import os
+from os import path
 import sys
 
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, path.abspath('..'))
 
 
-
-
-# Find version from setup.py
+# Read the __version__ variable from rclone_manager/__version__.py
+PATH = path.abspath(path.dirname(__file__))
+about = {}
+with open(path.join(PATH, '..', 'rclone_manager', '__version__.py'), encoding='utf-8') as f:
+    exec(f.read(), about)
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'RClone Manager'
-copyright = '2022, Batuhan Şanlı'
-author = 'Batuhan Şanlı'
-release = '0.5.0' # rclone_manager.__version__
+copyright = about['__copyright__']
+author = about['__author__']
+release = about['__version__']
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
