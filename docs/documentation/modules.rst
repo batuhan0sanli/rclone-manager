@@ -12,7 +12,7 @@ The RClone object has the following methods:
 .. toctree::
    :maxdepth: 1
 
-   rclone_manager
+   ../modules/rclone_manager
 
 Base Modules
 -------------
@@ -20,4 +20,4 @@ Base Modules
 .. toctree::
    :maxdepth: 2
 
-   rclone_manager.base
+   ../modules/rclone_manager.base

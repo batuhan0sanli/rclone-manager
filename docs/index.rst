@@ -47,17 +47,17 @@ A minimal example of how to use RClone Manager is shown below:
    :maxdepth: 2
    :caption: Documentation
 
-   installation
-   usage
-   modules
-   examples
+   documentation/installation
+   documentation/usage
+   documentation/modules
+   documentation/examples
 
 .. toctree::
    :maxdepth: 1
    :caption: Contents
 
-   changelog
-   license
+   contents/changelog
+   contents/license
 
 Indices and tables
 ==================
