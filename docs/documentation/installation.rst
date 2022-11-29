@@ -10,15 +10,15 @@ Requirements
 Installation
 ------------
 
-Install from PyPI
+Install from PyPI:
 
-   ::
+.. code-block:: bash
 
       python3 -m pip install rclone-manager
 
-Install in Terminal
+Install in Terminal:
 
-   ::
+.. code-block:: bash
 
       git clone
       cd rclone-manager
