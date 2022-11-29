@@ -10,7 +10,7 @@
 __title__ = "rclone-manager"
 __description__ = "Define multiple tasks using rclone."
 __url__ = "https://github.com/batuhan0sanli/rclone-manager"
-__version__ = "0.6.0"
+__version__ = "0.7.0"
 __author__ = "batuhan0sanli"
 __author_email__ = "batuhansanli@gmail.com"
 __license__ = "MIT"
