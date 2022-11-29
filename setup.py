@@ -1,6 +1,6 @@
-from setuptools import setup, find_packages
-
 from os import path
+
+from setuptools import setup, find_packages
 
 # The directory containing this file
 PATH = path.abspath(path.dirname(__file__))
@@ -13,16 +13,21 @@ with open(path.join(PATH, 'README.md'), encoding='utf-8') as f:
 with open(path.join(PATH, 'requirements.txt'), encoding='utf-8') as f:
     requirements = f.read().splitlines()
 
+# Read the __version__ variable from rclone_manager/__version__.py
+about = {}
+with open(path.join(PATH, 'rclone_manager', '__version__.py'), encoding='utf-8') as f:
+    exec(f.read(), about)
+
 setup(
-    name='rclone-manager',
-    version='0.5.0',
-    description='Define multiple tasks using rclone',
+    name=about['__title__'],
+    version=about['__version__'],
+    description=about['__description__'],
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/batuhan0sanli/rclone-manager',
-    author='batuhan0sanli',
-    author_email='batuhansanli@gmail.com',
-    license='MIT',
+    url=about['__url__'],
+    author=about['__author__'],
+    author_email=about['__author_email__'],
+    license=about['__license__'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
