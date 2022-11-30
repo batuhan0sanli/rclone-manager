@@ -39,4 +39,8 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     install_requires=requirements,
     python_requires='>=3.8',
+    project_urls={
+        'Documentation': 'https://rclone-manager.readthedocs.io',
+        'Source': 'https://github.com/batuhan0sanli/rclone-manager',
+    },
 )
