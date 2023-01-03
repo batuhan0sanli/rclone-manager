@@ -2,6 +2,8 @@
 
 Define multiple tasks using rclone to sync files from one cloud storage to another.
 
+**Documentation:** https://rclone-manager.readthedocs.io/en/latest/
+
 ## Features
 
 - Define multiple tasks
